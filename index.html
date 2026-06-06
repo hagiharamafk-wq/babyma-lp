@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UPTO100 ベビーマッサージ資格取得講座</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       カラー・基本変数
+       色を変えたい場合はここだけ編集してください
+    ============================================================ */
+    :root {
+      --green:       #6BAF9A;   /* メインカラー（爽やかグリーン） */
+      --green-light: #E6F2EE;   /* ベース背景（薄いミントグリーン） */
+      --green-mid:   #C8E5DC;   /* やや濃いミント（accent sections） */
+      --green-dark:  #3D7D6B;   /* 濃いグリーン（強調・タイトル） */
+      --pink:        #E8849E;   /* アクセント（柔らかいピンク） */
+      --pink-dark:   #CF6787;   /* ピンクホバー */
+      --pink-light:  #FCEEF3;   /* 薄いピンク背景 */
+      /* 旧名エイリアス（既存コードとの互換） */
+      --coral:       #E8849E;
+      --coral-dark:  #CF6787;
+      --cream:       #FFFFFF;
+      --beige:       #E6F2EE;
+      --beige-dark:  #FFFFFF;
+      --white:       #FFFFFF;
+      --text-dark:   #1C3530;   /* ディープグリーンブラック */
+      --text-body:   #3D5550;   /* グリーントーン本文 */
+      --text-light:  #7A9E98;   /* ライトグリーングレー */
+      --border:      #C4DDD7;   /* ミントボーダー */
+      --shadow:      0 4px 20px rgba(60,120,100,0.10);
+    }
+
+    /* ============================================================
+       リセット・基本
+    ============================================================ */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Zen Maru Gothic', 'Hiragino Kaku Gothic ProN',
+                   'Noto Sans JP', sans-serif;
+      color: var(--text-body);
+      background: var(--green-light);
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    img { width: 100%; height: auto; display: block; }
+
+    /* ============================================================
+       共通パーツ
+    ============================================================ */
+    .section        { padding: 60px 20px; background: var(--green-light); }
+    .section--cream { background: var(--white); }
+    .section--green { background: var(--green-mid); }
+    .section--pink  { background: var(--pink-light); }
+
+    /* 最大幅制限（デスクトップで中央寄せ） */
+    .inner { max-width: 680px; margin: 0 auto; }
+
+    .label {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--green-dark);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      background: var(--green-mid);
+      padding: 3px 12px;
+      border-radius: 20px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .section-title--center { text-align: center; }
+
+    /* CTAボタン */
+    @keyframes float {
+      0%   { transform: translateY(0px);   box-shadow: 0 8px 24px rgba(232,132,158,0.45); }
+      50%  { transform: translateY(-6px);  box-shadow: 0 14px 32px rgba(232,132,158,0.30); }
+      100% { transform: translateY(0px);   box-shadow: 0 8px 24px rgba(232,132,158,0.45); }
+    }
+
+    .cta-wrap  { text-align: center; margin-top: 32px; }
+
+    .cta-btn {
+      display: inline-block;
+      background: var(--coral);
+      color: var(--white) !important;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 18px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      line-height: 1.5;
+      animation: float 2.8s ease-in-out infinite;
+    }
+
+    .cta-btn:active { transform: scale(0.97) translateY(0); animation: none; }
+
+    .cta-btn:active { background: var(--coral-dark); transform: scale(0.98); }
+
+    .cta-note {
+      font-size: 12px;
+      color: var(--text-light);
+      margin-top: 10px;
+    }
+
+    /* ============================================================
+       ① ファーストビュー
+    ============================================================ */
+    .hero { background: #1a1a1a; }
+
+    /* 縦長動画エリア（9:16 ポートレート） */
+    .hero__visual {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      overflow: hidden;
+      background: #1a1a1a;
+    }
+
+    .hero__visual video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* 動画上のオーバーレイ（上：タグ＋タイトル / 下：バッジ＋CTA） */
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, transparent 35%),
+        linear-gradient(to top,    rgba(0,0,0,0.80) 0%, transparent 55%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 32px 20px 36px;
+    }
+
+    .hero__overlay-top { /* タグ＋タイトル */ }
+
+    .hero__tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.22);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.55);
+      margin-bottom: 14px;
+      width: fit-content;
+    }
+
+    .hero__title {
+      font-size: 21px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.7;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+    }
+
+    .hero__title em {
+      font-style: normal;
+      color: #FFDCE8;
+    }
+
+    /* 3つの丸バッジ（オーバーレイ下部） */
+    .hero__circles {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .hero__circle {
+      flex: 1;
+      max-width: 96px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      border: 1.5px solid rgba(255,255,255,0.6);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 10.5px;
+      font-weight: 700;
+      line-height: 1.5;
+      backdrop-filter: blur(4px);
+    }
+
+    /* CTA エリア */
+    .hero__body { padding: 20px 20px 40px; }
+
+    .hero__badge {
+      background: var(--white);
+      border-left: 3px solid var(--green);
+      border-radius: 0 12px 12px 0;
+      padding: 14px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 28px;
+      line-height: 1.7;
+      box-shadow: 0 2px 10px rgba(60,120,100,0.08);
+    }
+
+    /* 旧スタイル（未使用） */
+    .hero__meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .hero__chip {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 12px;
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+
+    /* ============================================================
+       ② 悩み・共感
+    ============================================================ */
+    .pain__img {
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+
+    .pain__img img {
+      height: 240px;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+
+    .pain__category {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-light);
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+
+    .pain__list { list-style: none; margin-bottom: 16px; }
+
+    .pain__item {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 14px 16px 14px 42px;
+      margin-bottom: 10px;
+      position: relative;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-dark);
+      box-shadow: var(--shadow);
+    }
+
+    .pain__item::before {
+      content: '…';
+      position: absolute;
+      left: 14px;
+      top: 13px;
+      font-size: 18px;
+      color: var(--text-light);
+    }
+
+    .pain__divider {
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-light);
+      margin: 20px 0 16px;
+    }
+
+    .pain__closing {
+      margin-top: 28px;
+      padding: 20px;
+      background: var(--white);
+      border-radius: 12px;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1.9;
+      box-shadow: var(--shadow);
+    }
+
+    .pain__closing span {
+      display: block;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-body);
+      margin-top: 6px;
+    }
+
+    /* ============================================================
+       ③ 受講生の声
+    ============================================================ */
+    .voices__img {
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 32px;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+    }
+
+    .voices__img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .voice-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .voice-card__header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .voice-card__avatar {
+      flex-shrink: 0;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--green-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      overflow: hidden;
+    }
+
+    /* 受講生の顔写真が手に入ったらこのavatarの中に
+       <img src="images/受講生名.jpg" alt=""> を入れてください */
+    .voice-card__avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .voice-card__meta {
+      font-size: 12px;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    .voice-card__result {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .voice-card__body {
+      font-size: 14px;
+      line-height: 1.85;
+      color: var(--text-body);
+    }
+
+    .voices__closing {
+      background: var(--green-light);
+      border-radius: 14px;
+      padding: 24px 20px;
+      text-align: center;
+      font-size: 15px;
+      line-height: 1.95;
+      color: var(--text-dark);
+      margin-top: 24px;
+    }
+
+    /* ============================================================
+       ④ 講師ストーリー
+    ============================================================ */
+    .story__img {
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+
+    .story__img img {
+      height: 300px;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .story__text p { margin-bottom: 16px; font-size: 15px; line-height: 1.9; }
+
+    .story__highlight {
+      background: var(--cream);
+      border-left: 4px solid var(--coral);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 18px;
+      margin: 24px 0;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .story__highlight strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .story__result {
+      list-style: none;
+      margin: 20px 0;
+    }
+
+    .story__result li {
+      padding: 12px 0 12px 28px;
+      position: relative;
+      font-size: 14px;
+      line-height: 1.7;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .story__result li:last-child { border-bottom: none; }
+
+    .story__result li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .story__closing {
+      background: var(--green-light);
+      border-radius: 14px;
+      padding: 24px 20px;
+      text-align: center;
+      font-size: 15px;
+      line-height: 2;
+      color: var(--text-dark);
+    }
+
+    /* ============================================================
+       ⑤ サービス内容
+    ============================================================ */
+    .points-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .point-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 16px 12px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .point-card__num {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: 0.1em;
+      margin-bottom: 6px;
+    }
+
+    .point-card__title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.5;
+    }
+
+    .point-card__sub {
+      font-size: 11px;
+      color: var(--text-light);
+      margin-top: 5px;
+      line-height: 1.5;
+    }
+
+    .imgs-3col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .imgs-3col .img-box {
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .imgs-3col .img-box img {
+      height: 110px;
+      object-fit: cover;
+    }
+
+    /* Zoomモックアップ（実際の画像がない箇所） */
+    .zoom-mock {
+      border-radius: 10px;
+      height: 110px;
+      background: #1a1a2e;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .zoom-mock__icon {
+      width: 36px;
+      height: 36px;
+      background: #2D8CFF;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .zoom-mock__label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.7);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .zoom-mock__sub {
+      font-size: 10px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* カリキュラムリスト */
+    .curriculum-list { list-style: none; margin-bottom: 28px; }
+
+    .curriculum-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .curriculum-list li:last-child { border-bottom: none; }
+
+    .c-num {
+      flex-shrink: 0;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--green);
+      background: var(--green-light);
+      padding: 3px 7px;
+      border-radius: 4px;
+      min-width: 52px;
+      text-align: center;
+    }
+
+    /* フォローアップ */
+    .followup-box {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .box-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-dark);
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--green-light);
+      margin-bottom: 14px;
+    }
+
+    .check-list { list-style: none; }
+
+    .check-list li {
+      font-size: 14px;
+      padding: 7px 0 7px 22px;
+      position: relative;
+      color: var(--text-body);
+      line-height: 1.6;
+    }
+
+    .check-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    /* 特典ボックス */
+    .bonus-box {
+      background: linear-gradient(135deg, #FFF5F0, #FDF8F3);
+      border: 2px solid var(--coral);
+      border-radius: 16px;
+      padding: 24px 20px;
+      margin-bottom: 8px;
+    }
+
+    .bonus-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--coral);
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .star-list { list-style: none; }
+
+    .star-list li {
+      font-size: 14px;
+      padding: 9px 0 9px 24px;
+      position: relative;
+      border-bottom: 1px dashed rgba(232,115,74,0.2);
+      line-height: 1.6;
+      color: var(--text-dark);
+    }
+
+    .star-list li:last-child { border-bottom: none; }
+
+    .star-list li::before {
+      content: '★';
+      position: absolute;
+      left: 0;
+      color: var(--coral);
+      font-size: 13px;
+    }
+
+    /* ============================================================
+       ⑥ 選ばれる理由
+    ============================================================ */
+    .reason-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+
+    .reason-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .reason-icon {
+      flex-shrink: 0;
+      width: 52px;
+      height: 52px;
+      background: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 10px rgba(60,120,100,0.12);
+    }
+
+    .reason-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+
+    .reason-body {
+      font-size: 13px;
+      line-height: 1.75;
+      color: var(--text-body);
+    }
+
+    /* 少人数制バッジ */
+    .small-class-badge {
+      background: var(--white);
+      border: 2px solid var(--green);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 28px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .small-class-badge__num {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1;
+    }
+
+    .small-class-badge__label {
+      font-size: 14px;
+      color: var(--text-dark);
+      margin-top: 4px;
+    }
+
+    .small-class-badge__note {
+      font-size: 12px;
+      color: var(--text-light);
+      margin-top: 6px;
+      line-height: 1.6;
+    }
+
+    /* 講師プロフィール */
+    .profile-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 24px 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .profile-card__head {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .profile-card__img {
+      flex-shrink: 0;
+      width: 88px;
+      height: 110px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .profile-card__img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .profile-card__name {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .profile-card__desc {
+      font-size: 13px;
+      line-height: 1.85;
+      color: var(--text-body);
+    }
+
+    .profile-card__sub {
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+
+    .profile-card__sub img {
+      height: 200px;
+      object-fit: cover;
+    }
+
+    /* ============================================================
+       ⑦ 受講について
+    ============================================================ */
+    .detail__img {
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+
+    .detail__img img {
+      height: 200px;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+
+    .detail-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-bottom: 8px;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .detail-table tr { border-bottom: 1px solid var(--border); }
+    .detail-table tr:last-child { border-bottom: none; }
+
+    .detail-table th {
+      width: 36%;
+      padding: 14px 12px;
+      text-align: left;
+      font-weight: 700;
+      color: var(--text-dark);
+      background: var(--green-light);
+      vertical-align: top;
+      font-size: 13px;
+    }
+
+    .detail-table td {
+      padding: 14px 12px;
+      color: var(--text-body);
+      line-height: 1.65;
+    }
+
+    .detail-table small {
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    /* ============================================================
+       ⑧ FAQ
+    ============================================================ */
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+
+    .faq-item {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .faq-q {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    .faq-q-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      background: var(--green);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+
+    .faq-a {
+      padding: 0 16px 16px 52px;
+      font-size: 14px;
+      line-height: 1.85;
+      color: var(--text-body);
+    }
+
+    /* ============================================================
+       ⑨ クロージング
+    ============================================================ */
+    .closing {
+      background: linear-gradient(180deg, #FFFFFF 0%, var(--cream) 100%);
+      text-align: center;
+    }
+
+    .closing__img {
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+
+    .closing__img img {
+      height: 280px;
+      object-fit: cover;
+    }
+
+    .closing__title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+
+    .closing__title em {
+      font-style: normal;
+      color: var(--coral);
+    }
+
+    .closing__text {
+      font-size: 15px;
+      line-height: 2.1;
+      color: var(--text-body);
+      margin-bottom: 36px;
+    }
+
+    .closing__cta-btn {
+      display: block;
+      max-width: 340px;
+      margin: 0 auto;
+      background: var(--coral);
+      color: var(--white) !important;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 20px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      line-height: 1.5;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(232,115,74,0.42);
+    }
+
+    .closing__cta-note {
+      font-size: 12px;
+      color: var(--text-light);
+      margin-top: 12px;
+      line-height: 1.7;
+    }
+
+    .closing__sign {
+      margin-top: 32px;
+      font-size: 13px;
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+
+    /* ============================================================
+       フッター
+    ============================================================ */
+    .footer {
+      background: var(--text-dark);
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 12px;
+    }
+
+    /* ============================================================
+       固定CTAバー（スクロール後に表示）
+    ============================================================ */
+    .sticky-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      padding: 12px 20px 20px;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.12);
+      z-index: 999;
+      display: none;
+    }
+
+    .sticky-bar a {
+      display: block;
+      background: var(--coral);
+      color: var(--white) !important;
+      text-align: center;
+      padding: 16px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(232,115,74,0.35);
+    }
+
+    /* ============================================================
+       デスクトップ対応（600px以上）
+    ============================================================ */
+    @media (min-width: 600px) {
+      .section { padding: 80px 40px; }
+
+      .section-title  { font-size: 28px; }
+      .hero__title    { font-size: 30px; }
+      .closing__title { font-size: 28px; }
+
+
+      .points-grid { grid-template-columns: repeat(4, 1fr); }
+
+      .imgs-3col .img-box img,
+      .zoom-mock { height: 160px; }
+
+      .profile-card__img { width: 110px; height: 136px; }
+    }
+  </style>
+</head>
+<body>
+
+
+<!-- ================================================
+     ① ファーストビュー
+================================================ -->
+<section class="hero">
+  <div class="hero__visual">
+    <video
+      id="heroVideo"
+      src="images/hero.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="images/DSC02977.JPG"
+    ></video>
+    <div class="hero__overlay">
+      <!-- 上部：タグ＋キャッチコピー -->
+      <div class="hero__overlay-top">
+        <span class="hero__tag">育休中・子育て中のママへ</span>
+        <h1 class="hero__title">
+          ベビーマッサージの資格を取って<br>
+          <em>「子どもとの時間」</em>も<br>
+          <em>「キャリアアップ」</em>も<br>
+          どちらも手に入れませんか？
+        </h1>
+      </div>
+
+      <!-- 下部：3バッジ＋CTAボタン -->
+      <div>
+        <div class="hero__circles">
+          <div class="hero__circle">オンライン<br>全国から<br>参加可能</div>
+          <div class="hero__circle">育休中・<br>子育て中の<br>ママ向け</div>
+          <div class="hero__circle">４ヶ月<br>伴走</div>
+        </div>
+        <div class="cta-wrap" style="margin-top:0;">
+          <a href="https://ws.formzu.net/sfgen/S9934733/" class="cta-btn">
+            ✓ 講座について詳しく見る
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 実績バッジ（動画下） -->
+  <div class="hero__body" style="background:var(--green-light);">
+    <p class="hero__badge">
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none" style="display:inline-block;vertical-align:-2px;margin-right:4px"><path d="M7.5 1 L8.7 5.8 L13.5 7.5 L8.7 9.2 L7.5 14 L6.3 9.2 L1.5 7.5 L6.3 5.8 Z" fill="#E8849E"/><circle cx="13" cy="2.5" r="1.2" fill="#FFD580"/><circle cx="2" cy="12.5" r="0.9" fill="#FFD580"/></svg>開業初月満席・支援センター担当<br>
+      キャリアアップした受講生続出！
+    </p>
+  </div>
+</section>
+
+
+<!-- ================================================
+     ② 悩み・共感
+================================================ -->
+<section class="section section--cream">
+  <div class="inner">
+    <span class="label">Pain</span>
+    <h2 class="section-title">
+      こんなこと、<br>感じたことはありませんか？
+    </h2>
+
+    <div class="pain__img">
+      <img src="images/IMG_6649_preview.jpg"
+           alt="子育てしながら学ぼうとするママ">
+    </div>
+
+    <p class="pain__category">育児の悩み</p>
+    <ul class="pain__list">
+      <li class="pain__item">「優しいママになりたい」のに、寝ない子にイライラしてしまう</li>
+      <li class="pain__item">赤ちゃん返りの上の子に冷たい言葉をぶつけては後悔している</li>
+      <li class="pain__item">「もうどう頑張ればいいか分からない」と一人で泣きたくなる夜がある</li>
+      <li class="pain__item">育児に追われて自分の時間が1分もなく、心も体もボロボロ</li>
+    </ul>
+
+    <p class="pain__divider">― そして、こんな不安も ―</p>
+
+    <p class="pain__category">仕事・将来の悩み</p>
+    <ul class="pain__list">
+      <li class="pain__item">育休明けに今の職場に戻るしかないけど、正直気が重い</li>
+      <li class="pain__item">子どもとの時間を削らずに働ける方法が見つからない</li>
+      <li class="pain__item">「何か資格を取りたい」と思いながら、何から始めればいいか分からない</li>
+    </ul>
+
+    <div class="pain__closing">
+      私も、同じ暗闇の中にいました。
+      <span>だからこそ、同じ想いのあなたに伝えたいことがあります。</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================
+     ③ 理想の未来（受講生の声）
+================================================ -->
+<section class="section">
+  <div class="inner">
+    <span class="label">Voice</span>
+    <h2 class="section-title section-title--center">
+      一歩踏み出したママたちは<br>
+      こんな未来を手に入れました
+    </h2>
+
+    <div class="voices__img">
+      <img src="images/IMG_6264_preview.jpg"
+           alt="受講生のみなさんの笑顔">
+    </div>
+
+    <!-- 受講生カード1 -->
+    <div class="voice-card">
+      <div class="voice-card__header">
+        <div class="voice-card__avatar"><svg width="46" height="46" viewBox="0 0 46 46" fill="none"><circle cx="23" cy="23" r="23" fill="#C8E5DC"/><path d="M4 46 Q4 33 23 30 Q42 33 42 46Z" fill="#6BAF9A"/><rect x="19" y="29" width="8" height="5" rx="2" fill="#FDDBB4"/><circle cx="23" cy="22" r="11" fill="#FDDBB4"/><path d="M12 20 Q12 10 23 10 Q34 10 34 20 Q32 14 23 14 Q14 14 12 20Z" fill="#5C3D2E"/><circle cx="19.5" cy="21" r="2" fill="#3D2B1F"/><circle cx="26.5" cy="21" r="2" fill="#3D2B1F"/><circle cx="20.2" cy="20.3" r="0.7" fill="white"/><circle cx="27.2" cy="20.3" r="0.7" fill="white"/><path d="M18.5 26 Q23 29.5 27.5 26" stroke="#C97A6A" stroke-width="1.5" fill="none" stroke-linecap="round"/><ellipse cx="16" cy="24" rx="2.5" ry="1.8" fill="#E8849E" opacity="0.4"/><ellipse cx="30" cy="24" rx="2.5" ry="1.8" fill="#E8849E" opacity="0.4"/></svg></div>
+        <!--
+          顔写真の許可が取れたらここのemojiを削除して
+          <div class="voice-card__avatar"><img src="images/voice1.jpg" alt=""></div>
+          に差し替えてください
+        -->
+        <div class="voice-card__meta">保育士・育休中ママ<br>4歳＆生後6ヶ月</div>
+      </div>
+      <p class="voice-card__result">「地域支援クラスの責任者になりました」</p>
+      <p class="voice-card__body">育休中に資格を取得し仕事に復帰しました。資格取得がきっかけで地域支援クラスを任せていただき、ベビーマッサージをお伝えしています！大好きだった保育を続けながらベビーマッサージも伝えられる働き方が見つかり、仕事がますます楽しくなりました！</p>
+    </div>
+
+    <!-- 受講生カード2 -->
+    <div class="voice-card">
+      <div class="voice-card__header">
+        <div class="voice-card__avatar"><svg width="46" height="46" viewBox="0 0 46 46" fill="none"><circle cx="23" cy="23" r="23" fill="#C8E5DC"/><path d="M4 46 Q4 33 23 30 Q42 33 42 46Z" fill="#6BAF9A"/><rect x="19" y="29" width="8" height="5" rx="2" fill="#FDDBB4"/><circle cx="23" cy="22" r="11" fill="#FDDBB4"/><path d="M12 20 Q12 10 23 10 Q34 10 34 20 Q32 14 23 14 Q14 14 12 20Z" fill="#5C3D2E"/><circle cx="19.5" cy="21" r="2" fill="#3D2B1F"/><circle cx="26.5" cy="21" r="2" fill="#3D2B1F"/><circle cx="20.2" cy="20.3" r="0.7" fill="white"/><circle cx="27.2" cy="20.3" r="0.7" fill="white"/><path d="M18.5 26 Q23 29.5 27.5 26" stroke="#C97A6A" stroke-width="1.5" fill="none" stroke-linecap="round"/><ellipse cx="16" cy="24" rx="2.5" ry="1.8" fill="#E8849E" opacity="0.4"/><ellipse cx="30" cy="24" rx="2.5" ry="1.8" fill="#E8849E" opacity="0.4"/></svg></div>
+        <div class="voice-card__meta">幼稚園教諭・育休中<br>生後4ヶ月</div>
+      </div>
+      <p class="voice-card__result">「開業初月から満席になりました！！」</p>
+      <p class="voice-card__body">実は保活に落ちて仕事復帰できませんでした。でも育休中に資格を取っていたので、1歳の娘とお教室をスタート！開業初月からレッスンは満席、イベントには10〜20組ものお客様が来てくださいます。</p>
+    </div>
+
+    <!-- 受講生カード3 -->
+    <div class="voice-card">
+      <div class="voice-card__header">
+        <div class="voice-card__avatar"><svg width="46" height="46" viewBox="0 0 46 46" fill="none"><circle cx="23" cy="23" r="23" fill="#C8E5DC"/><path d="M4 46 Q4 33 23 30 Q42 33 42 46Z" fill="#6BAF9A"/><rect x="19" y="29" width="8" height="5" rx="2" fill="#FDDBB4"/><circle cx="23" cy="22" r="11" fill="#FDDBB4"/><path d="M12 20 Q12 10 23 10 Q34 10 34 20 Q32 14 23 14 Q14 14 12 20Z" fill="#5C3D2E"/><circle cx="19.5" cy="21" r="2" fill="#3D2B1F"/><circle cx="26.5" cy="21" r="2" fill="#3D2B1F"/><circle cx="20.2" cy="20.3" r="0.7" fill="white"/><circle cx="27.2" cy="20.3" r="0.7" fill="white"/><path d="M18.5 26 Q23 29.5 27.5 26" stroke="#C97A6A" stroke-width="1.5" fill="none" stroke-linecap="round"/><ellipse cx="16" cy="24" rx="2.5" ry="1.8" fill="#E8849E" opacity="0.4"/><ellipse cx="30" cy="24" rx="2.5" ry="1.8" fill="#E8849E" opacity="0.4"/></svg></div>
+        <div class="voice-card__meta">保育士・育休中<br>3歳＆生後1ヶ月</div>
+      </div>
+      <p class="voice-card__result">「支援センターでレッスン担当してます」</p>
+      <p class="voice-card__body">育休中に資格を取得して、すぐに支援センターでレッスンすることが決まりました！レッスンの構成や話の流れは講座の中で学んでいたので楽しんでレッスンできました。保育園以外で働くなんて思っても見なかったので、世界がすごく広がっています！</p>
+    </div>
+
+    <!-- 受講生カード4 -->
+    <div class="voice-card">
+      <div class="voice-card__header">
+        <div class="voice-card__avatar"><svg width="46" height="46" viewBox="0 0 46 46" fill="none"><circle cx="23" cy="23" r="23" fill="#C8E5DC"/><path d="M4 46 Q4 33 23 30 Q42 33 42 46Z" fill="#6BAF9A"/><rect x="19" y="29" width="8" height="5" rx="2" fill="#FDDBB4"/><circle cx="23" cy="22" r="11" fill="#FDDBB4"/><path d="M12 20 Q12 10 23 10 Q34 10 34 20 Q32 14 23 14 Q14 14 12 20Z" fill="#5C3D2E"/><circle cx="19.5" cy="21" r="2" fill="#3D2B1F"/><circle cx="26.5" cy="21" r="2" fill="#3D2B1F"/><circle cx="20.2" cy="20.3" r="0.7" fill="white"/><circle cx="27.2" cy="20.3" r="0.7" fill="white"/><path d="M18.5 26 Q23 29.5 27.5 26" stroke="#C97A6A" stroke-width="1.5" fill="none" stroke-linecap="round"/><ellipse cx="16" cy="24" rx="2.5" ry="1.8" fill="#E8849E" opacity="0.4"/><ellipse cx="30" cy="24" rx="2.5" ry="1.8" fill="#E8849E" opacity="0.4"/></svg></div>
+        <div class="voice-card__meta">保育園主任・保育士歴20年</div>
+      </div>
+      <p class="voice-card__result">「また1つキャリアが増えました！」</p>
+      <p class="voice-card__body">0歳クラスでマッサージしながら寝かしつけると「すごい！」と褒めてもらえます。保育士を育成する立場でもあるので、ベビーマッサージを現場でどう活かしていけるか、今とても楽しみです！</p>
+    </div>
+
+    <!-- 受講生カード5 -->
+    <div class="voice-card">
+      <div class="voice-card__header">
+        <div class="voice-card__avatar"><svg width="46" height="46" viewBox="0 0 46 46" fill="none"><circle cx="23" cy="23" r="23" fill="#C8E5DC"/><path d="M4 46 Q4 33 23 30 Q42 33 42 46Z" fill="#6BAF9A"/><rect x="19" y="29" width="8" height="5" rx="2" fill="#FDDBB4"/><circle cx="23" cy="22" r="11" fill="#FDDBB4"/><path d="M12 20 Q12 10 23 10 Q34 10 34 20 Q32 14 23 14 Q14 14 12 20Z" fill="#5C3D2E"/><circle cx="19.5" cy="21" r="2" fill="#3D2B1F"/><circle cx="26.5" cy="21" r="2" fill="#3D2B1F"/><circle cx="20.2" cy="20.3" r="0.7" fill="white"/><circle cx="27.2" cy="20.3" r="0.7" fill="white"/><path d="M18.5 26 Q23 29.5 27.5 26" stroke="#C97A6A" stroke-width="1.5" fill="none" stroke-linecap="round"/><ellipse cx="16" cy="24" rx="2.5" ry="1.8" fill="#E8849E" opacity="0.4"/><ellipse cx="30" cy="24" rx="2.5" ry="1.8" fill="#E8849E" opacity="0.4"/></svg></div>
+        <div class="voice-card__meta">28歳・新婚・元インストラクター</div>
+      </div>
+      <p class="voice-card__result">「自分のことが好きになれました」</p>
+      <p class="voice-card__body">赤ちゃんがいなくて最初は不安でしたが、丁寧に学べたことで不安はなくなりました！受講する中で知識が不安を消してくれて、経験が自信に変えてくれました。昔は自分に自信がなかったのですが、今は自分のことが大好きです♡</p>
+    </div>
+
+    <div class="voices__closing">
+      子育てしながらでも、専門職でなくても、<br>
+      ベビーマッサージの知識と「伝える力」があれば<br>
+      <strong>ママ自身が輝く場所をつくることができます。</strong>
+    </div>
+
+    <div class="cta-wrap">
+      <a href="https://ws.formzu.net/sfgen/S9934733/" class="cta-btn">
+        ✓ 講座について詳しく見る
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================
+     ④ 講師ストーリー
+================================================ -->
+<section class="section section--cream">
+  <div class="inner">
+    <span class="label">Story</span>
+    <h2 class="section-title">
+      私も、同じ<br>暗闇の中にいました
+    </h2>
+
+    <div class="story__img">
+      <img src="images/IMG_3185.JPG" alt="講師・萩原愛子">
+    </div>
+
+    <div class="story__text">
+      <p>今から4年前、次女を出産したとき、私は産後うつに片足を突っ込んでいました。</p>
+      <p>30分しか寝ない娘、お漏らしを繰り返す3歳の長女。「ママ、私を見て！」という叫びにさえ、応えてあげられない自分が情けなくて、虚しくて。</p>
+      <p>「ままー！！」とお迎えに飛び込んでくる娘を見ながら、頭の中は仕事でいっぱい。夜中にふと目が覚めて、布団もかけずに私の手を握って眠る娘を見て「わたし何やってんだろう…」と我に返ったことを今でも覚えています。</p>
+      <p>そんな私を救ってくれたのが、<strong>ベビーマッサージ</strong>でした。</p>
+    </div>
+
+    <div class="story__highlight">
+      <strong>ベビーマッサージで起きた変化</strong>
+      泣いている娘には安心するマッサージを。<br>
+      眠れない娘には安眠のマッサージを。<br>
+      暮らしの中にベビーマッサージを取り入れたことで…
+    </div>
+
+    <ul class="story__result">
+      <li>30分しか寝なかった娘が <strong>2時間お昼寝するように！</strong></li>
+      <li>一晩で4〜5回起きていた夜泣きが <strong>たった2回に！</strong></li>
+      <li>自分の手でマッサージした我が子が安心して眠る。その姿を見て<br><strong>ママとしての自信を取り戻せた。</strong></li>
+    </ul>
+
+    <div class="story__closing">
+      単なるマッサージの手技を学んだのではありません。<br>
+      「私にはこの子を笑顔にする力がある」という<br>
+      <strong>自信に変わったのです。</strong><br><br>
+      だからこそ私は、知識だけでなく<br>
+      「伝える力」まで余すことなくお伝えしたい。
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================
+     ⑤ サービス内容（カリキュラム）
+================================================ -->
+<section class="section">
+  <div class="inner">
+    <span class="label">Curriculum</span>
+    <h2 class="section-title section-title--center">
+      この講座で学べること<br>
+      <span style="font-size:16px; font-weight:400; color:var(--text-body);">全12回・約4ヶ月のカリキュラム</span>
+    </h2>
+
+    <!-- 4つの柱 -->
+    <div class="points-grid">
+      <div class="point-card">
+        <p class="point-card__num">Point 01</p>
+        <p class="point-card__title">ベビーマッサージ技術</p>
+        <p class="point-card__sub">解剖学に基づく<br>40種類のスキル</p>
+      </div>
+      <div class="point-card">
+        <p class="point-card__num">Point 02</p>
+        <p class="point-card__title">産前産後の運動サポート</p>
+        <p class="point-card__sub">ママのからだを<br>専門的視点でケア</p>
+      </div>
+      <div class="point-card">
+        <p class="point-card__num">Point 03</p>
+        <p class="point-card__title">SNS立ち上げ</p>
+        <p class="point-card__sub">インスタ・ブログで<br>集客できる発信力</p>
+      </div>
+      <div class="point-card">
+        <p class="point-card__num">Point 04</p>
+        <p class="point-card__title">満席教室運営</p>
+        <p class="point-card__sub">リピート率93%<br>満足度95%の方法</p>
+      </div>
+    </div>
+
+    <!-- 3枚の画像（実技・テキスト・Zoomモック） -->
+    <div class="imgs-3col">
+      <div class="img-box">
+        <img src="images/IMG_7891.jpg" alt="ベビーマッサージ実技練習">
+      </div>
+      <div class="img-box">
+        <img src="images/IMG_1228_preview.jpg" alt="UPTO100テキスト">
+      </div>
+      <div class="zoom-mock">
+        <div class="zoom-mock__icon">🎥</div>
+        <p class="zoom-mock__label">Online Lesson</p>
+        <p class="zoom-mock__sub">Zoom・振替OK</p>
+      </div>
+    </div>
+
+    <!-- カリキュラム一覧 -->
+    <h3 style="font-size:16px; font-weight:700; color:var(--text-dark); margin-bottom:16px;">
+      カリキュラム一覧
+    </h3>
+    <ul class="curriculum-list">
+      <li><span class="c-num">第1回</span>ベビーマッサージ理論</li>
+      <li><span class="c-num">第2回</span>赤ちゃんの身体</li>
+      <li><span class="c-num">第3回</span>赤ちゃんの発育・発達</li>
+      <li><span class="c-num">第4回</span>赤ちゃんの肌とスキンケア</li>
+      <li><span class="c-num">第5回</span>ベビーマッサージオイル</li>
+      <li><span class="c-num">第6回</span>産前産後ママの心と身体</li>
+      <li><span class="c-num">第7回</span>産前産後ママの運動</li>
+      <li><span class="c-num">第8回</span>ベビーマッサージ実技①（前半20種類）</li>
+      <li><span class="c-num">第9回</span>ベビーマッサージ実技②（後半20種類）</li>
+      <li><span class="c-num">第10回</span>SNS立ち上げ・発信方法</li>
+      <li><span class="c-num">第11回</span>満席教室を叶えるお教室運営</li>
+      <li><span class="c-num">第12回</span>個別テスト・修了</li>
+    </ul>
+
+    <!-- フォローアップ -->
+    <div class="followup-box">
+      <p class="box-title"><svg width="17" height="17" viewBox="0 0 17 17" fill="none" style="display:inline-block;vertical-align:-3px;margin-right:5px"><rect x="2.5" y="3" width="12" height="13" rx="2" fill="#C8E5DC" stroke="#6BAF9A" stroke-width="1.5"/><rect x="5.5" y="1" width="6" height="4" rx="1" fill="#6BAF9A"/><line x1="5.5" y1="8" x2="11.5" y2="8" stroke="#6BAF9A" stroke-width="1.3" stroke-linecap="round"/><line x1="5.5" y1="11" x2="11.5" y2="11" stroke="#6BAF9A" stroke-width="1.3" stroke-linecap="round"/><line x1="5.5" y1="13.5" x2="9" y2="13.5" stroke="#6BAF9A" stroke-width="1.3" stroke-linecap="round"/></svg>フォローアップ体制</p>
+      <ul class="check-list">
+        <li>先輩インストラクターによるスキルチェック</li>
+        <li>個別テストは1人ずつ・丁寧なフィードバックあり</li>
+      </ul>
+    </div>
+
+    <!-- 特典 -->
+    <div class="bonus-box">
+      <p class="bonus-title"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" style="display:inline-block;vertical-align:-3px;margin-right:5px"><rect x="2" y="8" width="14" height="9" rx="1.5" fill="#E8849E"/><rect x="1" y="5.5" width="16" height="3.5" rx="1.5" fill="#CF6787"/><rect x="8" y="5.5" width="2" height="11.5" fill="white" opacity="0.5"/><path d="M9 6 Q7 2.5 5.5 4 Q4.5 5.5 9 6Z" fill="#FCEEF3" stroke="#CF6787" stroke-width="0.8"/><path d="M9 6 Q11 2.5 12.5 4 Q13.5 5.5 9 6Z" fill="#FCEEF3" stroke="#CF6787" stroke-width="0.8"/></svg>受講特典</p>
+      <ul class="star-list">
+        <li>受講中、講師へ質問し放題！</li>
+        <li>講師開催レッスンへ実際に参加できる</li>
+        <li>個別フォロー60分 × 2本（卒業後も使える）</li>
+        <li>月齢別レッスンレシピ（このままやるだけの秘伝レシピ）</li>
+        <li>ベビーマッサージ専用ホホバオイルプレゼント</li>
+      </ul>
+    </div>
+
+    <div class="cta-wrap">
+      <a href="https://ws.formzu.net/sfgen/S9934733/" class="cta-btn">
+        ✓ 講座について詳しく見る
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================
+     ⑥ 選ばれる理由・講師紹介
+================================================ -->
+<section class="section section--green">
+  <div class="inner">
+    <span class="label">Why UPTO100</span>
+    <h2 class="section-title section-title--center">
+      なぜUPTO100が<br>選ばれるのか
+    </h2>
+
+    <!-- 3つの理由 -->
+    <div class="reason-list">
+      <div class="reason-card">
+        <div class="reason-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="2" y="19" width="24" height="6" rx="2" fill="#C8E5DC"/><rect x="3.5" y="19" width="2" height="6" rx="1" fill="rgba(255,255,255,0.7)"/><rect x="4" y="12" width="20" height="6" rx="2" fill="#E8849E"/><rect x="5.5" y="12" width="2" height="6" rx="1" fill="rgba(255,255,255,0.7)"/><rect x="6" y="5" width="16" height="6" rx="2" fill="#6BAF9A"/><rect x="7.5" y="5" width="2" height="6" rx="1" fill="rgba(255,255,255,0.7)"/></svg></div>
+        <div>
+          <p class="reason-title">「知識」と「伝える力」を両方育てる</p>
+          <p class="reason-body">技術を学ぶだけでなく、レッスンの組み立て方・SNS発信・教室運営まで一貫して学べます。</p>
+        </div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-icon"><svg width="22" height="30" viewBox="0 0 22 30" fill="none"><path d="M8 3 Q11 1 14 3 L14 6 L8 6 Z" fill="#E8849E"/><rect x="7" y="5" width="8" height="3" rx="1.5" fill="#C8E5DC"/><rect x="4" y="8" width="14" height="19" rx="7" fill="white" stroke="#C8E5DC" stroke-width="1.5"/><rect x="5.5" y="17" width="11" height="9" rx="5.5" fill="#E6F2EE"/><line x1="16.5" y1="13" x2="18" y2="13" stroke="#6BAF9A" stroke-width="1.5" stroke-linecap="round"/><line x1="16.5" y1="16" x2="18" y2="16" stroke="#6BAF9A" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div>
+          <p class="reason-title">育児中でも無理なく続けられる設計</p>
+          <p class="reason-body">全12回オンライン（Zoom）開催。お子様の体調不良時は振替OK。授業は毎回動画でお渡し。Zoom未経験でも使い方サポートあり。</p>
+        </div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-icon"><svg width="30" height="26" viewBox="0 0 30 26" fill="none"><path d="M2 17 L8 11 C9 10 10.5 10 11.5 11 L14 13 L16 13 L18.5 11 C19.5 10 21 10 22 11 L28 17" stroke="#6BAF9A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 11 L8 21 Q15 24 22 21 L22 11 L18.5 13 L15 12 L11.5 13 Z" fill="#C8E5DC"/><path d="M15 9 Q13 6 11 8 Q11 10 15 13 Q19 10 19 8 Q17 6 15 9Z" fill="#E8849E"/></svg></div>
+        <div>
+          <p class="reason-title">卒業後もひとりにしない</p>
+          <p class="reason-body">個別フォロー・先輩インストラクターによるスキルチェック・卒業生コミュニティで継続サポートします。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 少人数制バッジ -->
+    <div class="small-class-badge">
+      <p class="small-class-badge__num">少人数制</p>
+      <p class="small-class-badge__label">一人ひとりに向き合うサポート</p>
+      <p class="small-class-badge__note">
+        大人数の講座ではなく、丁寧に向き合う少人数制。<br>
+        講師として1,000組以上の親子をサポートしてきた経験を<br>
+        あなた一人のために活かします。
+      </p>
+    </div>
+
+    <!-- 講師プロフィール -->
+    <div class="profile-card">
+      <p class="box-title"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" style="display:inline-block;vertical-align:-3px;margin-right:5px"><circle cx="9" cy="5.5" r="3.5" fill="#FDDBB4"/><path d="M5.5 5 Q5.5 1.5 9 1.5 Q12.5 1.5 12.5 5 Q11.5 2.5 9 2.5 Q6.5 2.5 5.5 5Z" fill="#5C3D2E"/><path d="M3.5 18 Q3.5 12 9 10.5 Q14.5 12 14.5 18Z" fill="#6BAF9A"/><rect x="11.5" y="9" width="5.5" height="4.5" rx="1" fill="#C8E5DC" stroke="#6BAF9A" stroke-width="1"/><line x1="13" y1="11" x2="16" y2="11" stroke="#6BAF9A" stroke-width="1" stroke-linecap="round"/><line x1="13" y1="12.5" x2="15" y2="12.5" stroke="#6BAF9A" stroke-width="1" stroke-linecap="round"/></svg>講師紹介</p>
+      <div class="profile-card__head">
+        <div class="profile-card__img">
+          <img src="images/IMG_3187.JPG" alt="萩原愛子">
+        </div>
+        <div>
+          <p class="profile-card__name">萩原 愛子</p>
+          <p class="profile-card__desc">
+            フィットネスインストラクターとしてスポーツクラブ・加古川市立総合体育館に勤務後、フリーランスに転向。<br><br>
+            兵庫県高砂市を拠点に、<strong>これまでに1,000組以上の親子をサポート。</strong><br><br>
+            「100歳まで健康に生きる」をテーマに、0歳からの身体づくりを専門的視点で伝えています。
+          </p>
+        </div>
+      </div>
+      <div class="profile-card__sub">
+        <img src="images/DSC02969.JPG" alt="レッスンの様子">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================
+     ⑦ 受講について
+================================================ -->
+<section class="section">
+  <div class="inner">
+    <span class="label">Detail</span>
+    <h2 class="section-title section-title--center">受講について</h2>
+
+    <div class="detail__img">
+      <img src="images/IMG_5184_preview.jpg" alt="UPTO100 教材">
+    </div>
+
+    <table class="detail-table">
+      <tr>
+        <th>講座名</th>
+        <td>UPTO100<br>ベビーマッサージ資格取得講座</td>
+      </tr>
+      <tr>
+        <th>参加方法</th>
+        <td>オンライン（Zoom）<br><small>※未経験者サポートあり</small></td>
+      </tr>
+      <tr>
+        <th>対象</th>
+        <td>ベビーマッサージに興味のある女性</td>
+      </tr>
+      <tr>
+        <th>回数</th>
+        <td>全12回</td>
+      </tr>
+      <tr>
+        <th>期間</th>
+        <td>約4ヶ月</td>
+      </tr>
+      <tr>
+        <th>1回の時間</th>
+        <td>約2時間</td>
+      </tr>
+      <tr>
+        <th>振替</th>
+        <td>お子様の体調不良等の際は振替可</td>
+      </tr>
+      <tr>
+        <th>動画</th>
+        <td>授業は毎回動画でお渡し</td>
+      </tr>
+      <tr>
+        <th>修了証</th>
+        <td>全講座修了後に修了証書を発行</td>
+      </tr>
+      <tr>
+        <th>日程</th>
+        <td>お申し込み後に個別調整</td>
+      </tr>
+    </table>
+
+    <p style="font-size:13px; color:var(--text-light); text-align:center; margin-top:16px; line-height:1.7;">
+      ※ 料金は個別相談にてご案内しています。<br>まずはお気軽にお問い合わせください。
+    </p>
+
+    <div class="cta-wrap">
+      <a href="https://ws.formzu.net/sfgen/S9934733/" class="cta-btn">
+        日程・料金を無料相談で確認する
+      </a>
+      <p class="cta-note">所要時間：約45分 ／ 完全無料 ／ 押し売り一切なし</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================
+     ⑧ FAQ
+================================================ -->
+<section class="section section--cream">
+  <div class="inner">
+    <span class="label">FAQ</span>
+    <h2 class="section-title section-title--center">よくあるご質問</h2>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <p class="faq-q">
+          <span class="faq-q-icon">Q</span>
+          Zoomを使ったことがないのですが大丈夫ですか？
+        </p>
+        <p class="faq-a">大丈夫です。Zoom未経験の方へのサポートがありますので、安心してご参加ください。</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">
+          <span class="faq-q-icon">Q</span>
+          子どもが泣いたりぐずったりしても大丈夫ですか？
+        </p>
+        <p class="faq-a">大丈夫です。赤ちゃんの気持ち優先で進めていきます。授業は毎回動画でお渡ししますので、後からいつでも復習できます。</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">
+          <span class="faq-q-icon">Q</span>
+          保育士・看護師などの専門職でないと受けられませんか？
+        </p>
+        <p class="faq-a">もちろん受講できます。専業主婦・歯科衛生士・スポーツインストラクター・美容部員など、さまざまな職業の方が受講されています。</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">
+          <span class="faq-q-icon">Q</span>
+          資格を取ったら何ができるようになりますか？
+        </p>
+        <p class="faq-a">自宅やスタジオでのレッスン開催、イベント出展、支援センター・企業での講師活動などができます。マスターインストラクターになると講師育成も可能です。</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">
+          <span class="faq-q-icon">Q</span>
+          実技試験はオンラインでも受けられますか？
+        </p>
+        <p class="faq-a">対面・オンラインどちらも可能です。</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">
+          <span class="faq-q-icon">Q</span>
+          他の団体・協会で取った資格があります。一緒に使えますか？
+        </p>
+        <p class="faq-a">可能です。UPTO100の学びを活かして「自分のやりたい」を叶えてください。</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">
+          <span class="faq-q-icon">Q</span>
+          年会費や更新料はありますか？
+        </p>
+        <p class="faq-a">ありません。</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">
+          <span class="faq-q-icon">Q</span>
+          受講中に分からないことがあったら質問できますか？
+        </p>
+        <p class="faq-a">はい。受講中は講師へ質問し放題です。悩んでいる時間がもったいないので、気軽にどんどん聞いてください。</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================
+     ⑨ クロージング＋最後のCTA
+================================================ -->
+<section class="section closing">
+  <div class="inner">
+    <div class="closing__img">
+      <img src="images/IMG_4154_preview.jpg" alt="ママと子どもたちの温かい笑顔">
+    </div>
+
+    <h2 class="closing__title">
+      ママになったからこそ、<br>
+      <em>「楽しい子育て」</em>と<br>
+      <em>「やりがいのある仕事」</em><br>
+      どちらも欲張りに<br>手に入れてほしい
+    </h2>
+
+    <p class="closing__text">
+      子育てしながら何かを諦めなくていい。<br>
+      ママになったからこそ活かせる強みがある。<br><br>
+      ベビーマッサージを通して、<br>
+      あなた自身が輝く場所を一緒に作りましょう。<br><br>
+      まずは、あなたの話を聞かせてください。
+    </p>
+
+    <a href="https://ws.formzu.net/sfgen/S9934733/" class="closing__cta-btn">
+      赤ちゃんのプロになる<br>無料の個別相談を申し込む
+    </a>
+    <p class="closing__cta-note">
+      所要時間：約45分 ／ 完全無料<br>押し売り一切なし
+    </p>
+
+    <p class="closing__sign">
+      UPTO100ベビーマッサージ代表<br>
+      <strong>萩原 愛子</strong>
+    </p>
+  </div>
+</section>
+
+
+<!-- フッター -->
+<footer class="footer">
+  <p>© 2025 UPTO100 ベビーマッサージ</p>
+</footer>
+
+
+<!-- 固定CTAバー（600px以下スクロール後に表示） -->
+<div class="sticky-bar" id="stickyBar">
+  <a href="https://ws.formzu.net/sfgen/S9934733/">
+    無料の個別相談を申し込む
+  </a>
+</div>
+
+
+<script>
+  // 動画をゆっくり再生（0.5 = 半速）← 数字を変えると速さが変わります
+  var heroVideo = document.getElementById('heroVideo');
+  if (heroVideo) {
+    heroVideo.addEventListener('loadedmetadata', function () {
+      heroVideo.playbackRate = 0.5;
+    });
+  }
+
+  // スクロール後に固定CTAバーを表示
+  var stickyBar = document.getElementById('stickyBar');
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 500) {
+      stickyBar.style.display = 'block';
+    } else {
+      stickyBar.style.display = 'none';
+    }
+  });
+</script>
+
+</body>
+</html>

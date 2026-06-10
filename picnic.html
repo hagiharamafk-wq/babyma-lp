@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>梅雨ピクニック｜みとろの丘植物園</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:        #5A9EC9;
+      --blue-light:  #EAF4FB;
+      --blue-mid:    #C5E0F2;
+      --blue-dark:   #2D6A93;
+      --green:       #6BAF9A;
+      --green-light: #E6F2EE;
+      --green-dark:  #3D7D6B;
+      --pink:        #E8849E;
+      --pink-dark:   #CF6787;
+      --white:       #FFFFFF;
+      --text-dark:   #1A3248;
+      --text-body:   #3D5568;
+      --text-light:  #7A9EAD;
+      --border:      #B8D8ED;
+      --shadow:      0 4px 20px rgba(40,90,130,0.10);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Zen Maru Gothic', 'Hiragino Kaku Gothic ProN',
+                   'Noto Sans JP', sans-serif;
+      color: var(--text-body);
+      background: var(--blue-light);
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      background: linear-gradient(160deg, #b8daf0 0%, #d4ecd8 50%, #c9e8f5 100%);
+      padding: 60px 20px 50px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(90,158,201,0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(107,175,154,0.15) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .rain-deco {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .rain-drop {
+      position: absolute;
+      width: 2px;
+      border-radius: 2px;
+      background: linear-gradient(to bottom, transparent, rgba(90,158,201,0.4));
+      animation: rain-fall linear infinite;
+    }
+
+    @keyframes rain-fall {
+      0%   { transform: translateY(-20px); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+
+    .hero-label {
+      display: inline-block;
+      background: var(--blue-dark);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      padding: 5px 18px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(26px, 6vw, 42px);
+      font-weight: 700;
+      color: var(--blue-dark);
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 span.accent {
+      color: var(--green-dark);
+    }
+
+    .hero-sub {
+      font-size: clamp(14px, 3vw, 17px);
+      color: var(--text-body);
+      margin-bottom: 32px;
+    }
+
+    .hero-info-box {
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      background: rgba(255,255,255,0.85);
+      border-radius: 18px;
+      padding: 22px 32px;
+      box-shadow: var(--shadow);
+      margin-bottom: 32px;
+    }
+
+    .hero-info-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+
+    .hero-info-item .icon {
+      font-size: 20px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--pink) 0%, #e06d8a 100%);
+      color: #fff;
+      font-size: 17px;
+      font-weight: 700;
+      padding: 16px 48px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 4px 18px rgba(232,132,158,0.5);
+      transition: transform 0.2s, box-shadow 0.2s;
+      letter-spacing: 0.05em;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(232,132,158,0.55);
+    }
+
+    .free-badge {
+      display: inline-block;
+      background: #fff;
+      border: 2px solid var(--pink);
+      color: var(--pink);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 12px;
+      border-radius: 20px;
+      margin-top: 14px;
+      letter-spacing: 0.08em;
+    }
+
+    /* ============================================================
+       SECTION BASE
+    ============================================================ */
+    section {
+      padding: 56px 20px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: inline-block;
+      background: var(--blue-mid);
+      color: var(--blue-dark);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: clamp(20px, 4.5vw, 26px);
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    h2 .line {
+      display: inline;
+      background: linear-gradient(transparent 60%, rgba(90,158,201,0.3) 60%);
+    }
+
+    p {
+      margin-bottom: 14px;
+      font-size: 15px;
+    }
+
+    /* ============================================================
+       CONCEPT
+    ============================================================ */
+    .concept-section {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 40px 28px;
+      margin: 0 auto 8px;
+      max-width: 680px;
+      box-shadow: var(--shadow);
+    }
+
+    .concept-emoji {
+      font-size: 48px;
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    /* ============================================================
+       SCENERY PHOTO
+    ============================================================ */
+    .scenery-photo {
+      display: block;
+      margin-top: 24px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      position: relative;
+      animation: float-photo 5s ease-in-out infinite;
+    }
+
+    .scenery-photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .scenery-caption {
+      position: absolute;
+      bottom: 14px;
+      left: 14px;
+      margin: 0;
+      background: rgba(255,255,255,0.85);
+      color: var(--blue-dark);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+    }
+
+    @keyframes float-photo {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* ============================================================
+       FEATURES
+    ============================================================ */
+    .features-wrap {
+      background: var(--blue-light);
+      padding: 56px 20px;
+    }
+
+    .features-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .feature-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .feature-card {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      border-top: 4px solid var(--blue);
+      transition: transform 0.2s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .feature-card:nth-child(2) { border-top-color: var(--green); }
+    .feature-card:nth-child(3) { border-top-color: var(--pink); }
+    .feature-card:nth-child(4) { border-top-color: #f0c040; }
+
+    .feature-card .emo {
+      font-size: 38px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .feature-card h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      font-size: 13px;
+      color: var(--text-light);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       SCENE / 当日の流れ
+    ============================================================ */
+    .flow-section {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 40px 28px;
+      max-width: 680px;
+      margin: 0 auto;
+      box-shadow: var(--shadow);
+    }
+
+    .flow-steps {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .flow-step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 18px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .flow-step:last-child { border-bottom: none; }
+
+    .flow-num {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      color: #fff;
+      font-weight: 700;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .flow-content h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .flow-content p {
+      font-size: 13px;
+      color: var(--text-light);
+      margin: 0;
+    }
+
+    /* ============================================================
+       DETAIL
+    ============================================================ */
+    .detail-wrap {
+      background: linear-gradient(160deg, var(--blue-mid) 0%, var(--green-light) 100%);
+      padding: 56px 20px;
+    }
+
+    .detail-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .detail-table {
+      background: var(--white);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      margin-top: 24px;
+    }
+
+    .detail-row {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .detail-row:last-child { border-bottom: none; }
+
+    .detail-label {
+      width: 120px;
+      flex-shrink: 0;
+      background: var(--blue-light);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--blue-dark);
+      padding: 18px 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .detail-value {
+      flex: 1;
+      padding: 18px 20px;
+      font-size: 14px;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      background: var(--blue-light);
+      color: var(--blue-dark);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    .tag.free {
+      background: #fff0f4;
+      color: var(--pink);
+      border: 1px solid var(--pink);
+    }
+
+    /* ============================================================
+       MESSAGE / ママへ
+    ============================================================ */
+    .message-section {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 40px 28px;
+      max-width: 680px;
+      margin: 0 auto;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .message-section .quote {
+      font-size: clamp(16px, 4vw, 20px);
+      font-weight: 700;
+      color: var(--blue-dark);
+      line-height: 1.7;
+      margin: 20px 0;
+      padding: 20px;
+      background: var(--blue-light);
+      border-radius: 14px;
+      border-left: 4px solid var(--blue);
+    }
+
+    .host-intro {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--green-light);
+      border-radius: 14px;
+      padding: 20px;
+      margin-top: 24px;
+      text-align: left;
+    }
+
+    .host-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--green));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .host-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .host-text h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .host-text p {
+      font-size: 12px;
+      color: var(--text-light);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       CTA
+    ============================================================ */
+    .cta-section {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, #1d4e6b 100%);
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .cta-inner {
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .cta-section h2 {
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .cta-section p {
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 28px;
+      font-size: 15px;
+    }
+
+    .btn-cta {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--pink) 0%, #e06d8a 100%);
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      padding: 18px 56px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 4px 24px rgba(232,132,158,0.5);
+      transition: transform 0.2s, box-shadow 0.2s;
+      letter-spacing: 0.05em;
+    }
+
+    .btn-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(232,132,158,0.6);
+    }
+
+    .cta-note {
+      color: rgba(255,255,255,0.7);
+      font-size: 12px;
+      margin-top: 16px;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: var(--text-dark);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 12px;
+    }
+
+    /* ============================================================
+       SECTION SPACING
+    ============================================================ */
+    .section-gap { padding: 56px 20px; }
+
+    /* ============================================================
+       STICKY CTA (SP)
+    ============================================================ */
+    .sticky-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--blue-dark);
+      padding: 12px 16px;
+      z-index: 100;
+      text-align: center;
+    }
+
+    .sticky-bar a {
+      display: block;
+      background: linear-gradient(135deg, var(--pink), #e06d8a);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 13px;
+      border-radius: 50px;
+      text-decoration: none;
+    }
+
+    @media (max-width: 640px) {
+      .sticky-bar { display: block; }
+      body { padding-bottom: 68px; }
+    }
+
+    /* ============================================================
+       RAIN ANIMATION SETUP
+    ============================================================ */
+    .rain-container {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+      opacity: 0.18;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<header class="hero">
+  <div class="rain-deco" id="rainDeco"></div>
+
+  <p class="hero-label">🌿 無料イベント ｜ 2025.6.17</p>
+
+  <h1>
+    雨の日も、<br>
+    <span class="accent">外に出て笑おう。</span><br>
+    梅雨ピクニック
+  </h1>
+
+  <p class="hero-sub">
+    しとしと雨でも大丈夫。<br>
+    みんなで集まって、ほっと一息。
+  </p>
+
+  <div class="hero-info-box">
+    <div class="hero-info-item">
+      <span class="icon">📅</span>
+      <span>6月17日（水）</span>
+    </div>
+    <div class="hero-info-item">
+      <span class="icon">🕙</span>
+      <span>10:30 〜 12:00</span>
+    </div>
+    <div class="hero-info-item">
+      <span class="icon">🌿</span>
+      <span>みとろの丘植物園</span>
+    </div>
+    <div class="hero-info-item">
+      <span class="icon">👶</span>
+      <span>月齢制限なし</span>
+    </div>
+  </div>
+
+  <a href="#apply" class="btn-primary">参加を申し込む</a>
+  <br>
+  <span class="free-badge">参加費 無料</span>
+</header>
+
+<!-- ============================================================
+     CONCEPT
+============================================================ -->
+<div class="section-gap">
+  <div class="concept-section">
+    <span class="concept-emoji">🌧️</span>
+    <span class="section-label">CONCEPT</span>
+    <h2><span class="line">梅雨だって、外へ出よう。</span></h2>
+    <p>
+      「今日も家にこもりっぱなしだった…」<br>
+      梅雨の時期、そんなふうに感じていませんか？
+    </p>
+    <p>
+      赤ちゃんとのお散歩もなかなか行けなくて、<br>
+      ずっと室内でちょっと息が詰まりそう。
+    </p>
+    <p>
+      そんなときこそ、<strong>みんなで集まって外の空気を感じてみませんか？</strong><br>
+      みとろの丘植物園の緑の中で、小雨が心地よい季節の空気を感じながら、<br>
+      ゆったりとしたピクニックの時間を過ごしましょう。
+    </p>
+    <p>
+      赤ちゃんとのこの時間、今しかない特別なひとときです。<br>
+      <strong>肩の力を抜いて、ほっと一息。</strong><br>
+      ぜひ一緒に楽しみましょう。
+    </p>
+  </div>
+
+  <a href="https://mitorohill.com/" target="_blank" rel="noopener" class="scenery-photo">
+    <img src="images/mitoro-hill.jpg" alt="みとろの丘植物園">
+    <p class="scenery-caption">🌿 みとろの丘植物園</p>
+  </a>
+</div>
+
+<!-- ============================================================
+     FEATURES
+============================================================ -->
+<div class="features-wrap">
+  <div class="features-inner">
+    <span class="section-label">FEATURES</span>
+    <h2>こんなひとときが待っています</h2>
+
+    <div class="feature-cards">
+      <div class="feature-card">
+        <span class="emo">🌿</span>
+        <h3>緑の中でリフレッシュ</h3>
+        <p>植物園の豊かな緑に囲まれて、心も体もゆったり。梅雨の潤いある空気が心地よい。</p>
+      </div>
+      <div class="feature-card">
+        <span class="emo">👶</span>
+        <h3>月齢制限なし</h3>
+        <p>ねんね期の赤ちゃんも、ハイハイ期も、よちよち歩きも元気な１才２才さんも。妊婦さんや保育園に預けてママおひとりでも♡<br>お気軽にご参加ください</p>
+      </div>
+      <div class="feature-card">
+        <span class="emo">💬</span>
+        <h3>ママ同士のつながり</h3>
+        <p>同じ月齢のお子さんを持つママと気軽におしゃべり。育児の話を共有しよう。</p>
+      </div>
+      <div class="feature-card">
+        <span class="emo">🎪</span>
+        <h3>参加費無料</h3>
+        <p>お気軽にお申込みください。<br>※カフェ代は各自お支払いとなります。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     FLOW
+============================================================ -->
+<div class="section-gap">
+  <div class="flow-section">
+    <span class="section-label">SCHEDULE</span>
+    <h2>当日の流れ</h2>
+
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="flow-content">
+          <h3>10:30　集合・受付</h3>
+          <p>みとろの丘植物園の入口に集合。はじめましての方も歓迎。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="flow-content">
+          <h3>10:40　植物園散歩</h3>
+          <p>ベビーカーがあると便利です。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="flow-content">
+          <h3>11:00　カフェタイム</h3>
+          <p>カフェでランチやお飲み物、おやつなど、お好きなものをご購入くださいね。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div class="flow-content">
+          <h3>11:30　おしゃべりタイム</h3>
+          <p>育児の悩みや日々のあれこれを気軽に話しましょう。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">5</div>
+        <div class="flow-content">
+          <h3>12:00　解散</h3>
+          <p>気をつけて帰って下さいね。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     DETAIL
+============================================================ -->
+<div class="detail-wrap">
+  <div class="detail-inner">
+    <span class="section-label">DETAIL</span>
+    <h2>開催詳細</h2>
+
+    <div class="detail-table">
+      <div class="detail-row">
+        <div class="detail-label">📅 日時</div>
+        <div class="detail-value">
+          2025年6月17日（水）<br>
+          10:30 〜 12:00
+        </div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">🌿 場所</div>
+        <div class="detail-value">
+          みとろの丘植物園
+        </div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">💰 参加費</div>
+        <div class="detail-value">
+          <span class="tag free">無料</span>
+        </div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">👶 対象</div>
+        <div class="detail-value">
+          <span class="tag">月齢制限なし</span>
+          赤ちゃん連れのママ・パパ
+        </div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">🌂 雨天時</div>
+        <div class="detail-value">
+          小雨決行。荒天の場合は前日にご連絡します。
+        </div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">🎒 持ち物</div>
+        <div class="detail-value">
+          飲み物、おむつなどいつものおでかけセット
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     MESSAGE
+============================================================ -->
+<div class="section-gap">
+  <div class="message-section">
+    <span class="section-label">MESSAGE</span>
+    <h2>ママへのメッセージ</h2>
+
+    <div class="quote">
+      「今日は外に出られてよかった」<br>
+      そのひとことが聞きたくて、<br>
+      この会を開きます。
+    </div>
+
+    <p>
+      梅雨の時期、赤ちゃんと二人で家の中にこもっていると、<br>
+      なんだか気持ちまで重くなってしまうことがありますよね。
+    </p>
+    <p>
+      でも、外に出てみんなの顔を見るだけで、<br>
+      「ああ、私だけじゃないんだな」って思える。<br>
+      そういう場所をつくりたいと思っています。
+    </p>
+    <p>
+      特別なことは何もしなくていい。<br>
+      ただ来て、座って、おしゃべりするだけで大丈夫。<br>
+      <strong>あなたとお子さんに会えることを楽しみにしています。</strong>
+    </p>
+
+    <div class="host-intro">
+      <div class="host-avatar"><img src="images/IMG_3187.JPG" alt="萩原愛子"></div>
+      <div class="host-text">
+        <h3>主催：UPTO100ベビーマッサージ代表 萩原愛子</h3>
+        <p>ベビーマッサージ教室の運営、インストラクターの育成を行いながら、地域のつながりづくりをしています。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     CTA
+============================================================ -->
+<div id="apply" class="cta-section">
+  <div class="cta-inner">
+    <h2>参加申し込みはこちら</h2>
+    <p>
+      6月17日（水）10:30〜12:00<br>
+      みとろの丘植物園｜参加費無料
+    </p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeZC2wj24Xi0oEXhHeZD0glnNUVwnrK13s48xnAMqBFD__Y9w/viewform?usp=publish-editor" class="btn-cta" target="_blank" rel="noopener">申し込みフォームへ</a>
+    <p class="cta-note">※ お申し込みは専用フォームから受け付けています</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer>
+  <p>© 2025 ベビーフラワー｜梅雨ピクニック at みとろの丘植物園</p>
+</footer>
+
+<!-- ============================================================
+     STICKY BAR (SP)
+============================================================ -->
+<div class="sticky-bar">
+  <a href="#apply">参加費無料｜今すぐ申し込む</a>
+</div>
+
+<!-- ============================================================
+     RAIN ANIMATION
+============================================================ -->
+<script>
+  const deco = document.getElementById('rainDeco');
+  for (let i = 0; i < 30; i++) {
+    const d = document.createElement('div');
+    d.className = 'rain-drop';
+    const left = Math.random() * 100;
+    const height = Math.random() * 40 + 20;
+    const duration = Math.random() * 1.5 + 1;
+    const delay = Math.random() * 3;
+    d.style.cssText = `
+      left: ${left}%;
+      height: ${height}px;
+      animation-duration: ${duration}s;
+      animation-delay: ${delay}s;
+    `;
+    deco.appendChild(d);
+  }
+</script>
+
+</body>
+</html>

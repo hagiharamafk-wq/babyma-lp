@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>赤ちゃん縁日｜Instagram投稿 10枚</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E2625B;
+    --red-light: #FDEDEA;
+    --red-mid: #F6CFC9;
+    --red-dark: #C44539;
+    --navy: #2C4870;
+    --navy-light: #EAF1F8;
+    --navy-dark: #1D3354;
+    --gold: #F0B429;
+    --gold-light: #FFF6E0;
+    --green: #6BAF9A;
+    --green-light: #E6F2EE;
+    --cream: #FFF8F0;
+    --text-dark: #2C3E50;
+    --text-body: #4A5C6E;
+    --text-light: #8AA0AE;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Zen Maru Gothic','Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;
+    background:#ccc;
+    color: var(--text-dark);
+  }
+  .page-note {
+    text-align:center;
+    padding:16px;
+    font-size:14px;
+    color:#555;
+    background:#fff;
+  }
+  .deck {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:24px;
+    padding:24px;
+  }
+  .slide {
+    width:1080px;
+    height:1080px;
+    position:relative;
+    overflow:hidden;
+    background:#fff;
+    box-shadow:0 4px 24px rgba(0,0,0,0.15);
+    flex-shrink:0;
+  }
+  .slide-num {
+    position:absolute;
+    top:32px;
+    right:40px;
+    font-size:22px;
+    font-weight:700;
+    color:rgba(255,255,255,0.85);
+    background:rgba(0,0,0,0.18);
+    border-radius:20px;
+    padding:6px 20px;
+    letter-spacing:0.1em;
+    z-index:5;
+  }
+  .slide-num.dark { color: var(--navy); background: rgba(255,255,255,0.7); }
+
+  /* ---- generic deco ---- */
+  .deco-corner {
+    position:absolute;
+    font-size:80px;
+    opacity:0.18;
+  }
+
+  /* ============ SLIDE 1: COVER ============ */
+  .slide1 {
+    background:
+      linear-gradient(180deg, rgba(29,51,84,0.55) 0%, rgba(29,51,84,0.15) 35%, rgba(226,98,91,0.55) 100%),
+      url('images/ennichi-baby.jpg') center 30% / cover no-repeat;
+  }
+  .slide1-content {
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-end;
+    padding:0 60px 90px;
+    text-align:center;
+  }
+  .slide1-badge {
+    background:var(--gold);
+    color:var(--navy-dark);
+    font-weight:900;
+    font-size:30px;
+    letter-spacing:0.2em;
+    padding:12px 40px;
+    border-radius:50px;
+    margin-bottom:28px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.2);
+  }
+  .slide1-title {
+    font-size:128px;
+    font-weight:900;
+    color:#fff;
+    line-height:1.25;
+    text-shadow:0 4px 24px rgba(0,0,0,0.35);
+    margin-bottom:24px;
+  }
+  .slide1-sub {
+    font-size:38px;
+    font-weight:700;
+    color:#fff;
+    background:rgba(29,51,84,0.55);
+    border-radius:50px;
+    padding:14px 48px;
+    letter-spacing:0.08em;
+  }
+
+  /* ============ SLIDE 2: OVERVIEW ============ */
+  .slide2 {
+    background: var(--cream);
+    padding:90px 80px;
+    display:flex;
+    flex-direction:column;
+  }
+  .ov-label {
+    display:inline-block;
+    background:var(--navy);
+    color:#fff;
+    font-weight:700;
+    font-size:26px;
+    letter-spacing:0.2em;
+    padding:10px 34px;
+    border-radius:50px;
+    margin-bottom:36px;
+  }
+  .ov-title {
+    font-size:64px;
+    font-weight:900;
+    color:var(--text-dark);
+    line-height:1.5;
+    margin-bottom:44px;
+  }
+  .ov-title .accent { color:var(--red-dark); }
+  .ov-body {
+    font-size:34px;
+    line-height:2.1;
+    color:var(--text-body);
+    margin-bottom:48px;
+  }
+  .ov-table {
+    background:#fff;
+    border-radius:28px;
+    box-shadow:0 8px 30px rgba(196,69,57,0.08);
+    overflow:hidden;
+    margin-top:auto;
+  }
+  .ov-row {
+    display:flex;
+    border-bottom:2px dashed var(--red-mid);
+    align-items:center;
+  }
+  .ov-row:last-child { border-bottom:none; }
+  .ov-icon {
+    width:170px;
+    flex-shrink:0;
+    text-align:center;
+    font-size:52px;
+    padding:30px 0;
+  }
+  .ov-text {
+    flex:1;
+    font-size:36px;
+    font-weight:700;
+    color:var(--text-dark);
+    padding:30px 30px 30px 0;
+  }
+  .ov-text small {
+    display:block;
+    font-size:24px;
+    font-weight:500;
+    color:var(--text-light);
+    margin-top:6px;
+  }
+
+  /* ============ PROGRAM SLIDES (3-6) ============ */
+  .prog {
+    display:flex;
+    flex-direction:column;
+    height:100%;
+  }
+  .prog-header {
+    padding:80px 80px 0;
+  }
+  .prog-tag {
+    display:inline-block;
+    font-weight:900;
+    font-size:30px;
+    letter-spacing:0.15em;
+    padding:10px 32px;
+    border-radius:50px;
+    color:#fff;
+    margin-bottom:30px;
+  }
+  .prog-num {
+    font-size:32px;
+    font-weight:900;
+    letter-spacing:0.1em;
+    margin-bottom:16px;
+  }
+  .prog-title {
+    font-size:84px;
+    font-weight:900;
+    line-height:1.3;
+    color:var(--text-dark);
+    margin-bottom:36px;
+  }
+  .prog-body {
+    font-size:36px;
+    line-height:2.0;
+    color:var(--text-body);
+  }
+  .prog-photo-area {
+    margin-top:auto;
+    height:430px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .prog-emoji-big {
+    font-size:260px;
+    line-height:1;
+  }
+
+  .slide3 .prog-header { background:var(--red-light); padding-bottom:60px; }
+  .slide3 .prog-tag { background:var(--red); }
+  .slide3 .prog-num { color:var(--red-dark); }
+  .slide3 .prog-photo-area { background:var(--red-mid); }
+
+  .slide4 .prog-header { background:var(--navy-light); padding-bottom:60px; }
+  .slide4 .prog-tag { background:var(--navy); }
+  .slide4 .prog-num { color:var(--navy); }
+  .slide4 .prog-photo-area { background:#cfe0f0; }
+
+  .slide5 .prog-header { background:var(--gold-light); padding-bottom:60px; }
+  .slide5 .prog-tag { background:var(--gold); color:var(--navy-dark); }
+  .slide5 .prog-num { color:#c98f12; }
+  .slide5 .prog-photo-area { background:#fbe6b0; }
+
+  .slide6 .prog-header { background:var(--green-light); padding-bottom:60px; }
+  .slide6 .prog-tag { background:var(--green); }
+  .slide6 .prog-num { color:#3f8c76; }
+  .slide6 .prog-photo-area { background:#cfeae1; }
+
+  /* ============ SLIDE 7: SCHEDULE ============ */
+  .slide7 {
+    background:var(--cream);
+    padding:90px 80px;
+  }
+  .sch-title {
+    font-size:64px;
+    font-weight:900;
+    margin-bottom:50px;
+    color:var(--text-dark);
+  }
+  .sch-step {
+    display:flex;
+    align-items:flex-start;
+    gap:36px;
+    padding:28px 0;
+    border-bottom:2px dashed var(--red-mid);
+  }
+  .sch-step:last-child { border-bottom:none; }
+  .sch-num {
+    flex-shrink:0;
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--red),var(--red-dark));
+    color:#fff;
+    font-size:38px;
+    font-weight:900;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .sch-text h3 {
+    font-size:38px;
+    font-weight:700;
+    color:var(--text-dark);
+    margin-bottom:8px;
+  }
+  .sch-text p {
+    font-size:28px;
+    color:var(--text-light);
+  }
+
+  /* ============ SLIDE 8: DETAIL ============ */
+  .slide8 {
+    background:linear-gradient(160deg, var(--red-mid) 0%, var(--gold-light) 100%);
+    padding:90px 70px;
+    display:flex;
+    flex-direction:column;
+  }
+  .det-title {
+    font-size:64px;
+    font-weight:900;
+    margin-bottom:40px;
+    color:var(--text-dark);
+  }
+  .det-table {
+    background:#fff;
+    border-radius:28px;
+    overflow:hidden;
+    box-shadow:0 8px 30px rgba(196,69,57,0.1);
+  }
+  .det-row {
+    display:flex;
+    border-bottom:2px solid var(--red-light);
+    align-items:center;
+  }
+  .det-row:last-child { border-bottom:none; }
+  .det-label {
+    width:240px;
+    flex-shrink:0;
+    background:var(--red-light);
+    color:var(--red-dark);
+    font-weight:700;
+    font-size:32px;
+    padding:34px 30px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .det-value {
+    flex:1;
+    font-size:36px;
+    font-weight:700;
+    color:var(--text-dark);
+    padding:34px 36px;
+    line-height:1.7;
+  }
+  .det-tags { display:flex; flex-wrap:wrap; gap:14px; }
+  .det-tag {
+    background:var(--navy-light);
+    color:var(--navy);
+    font-weight:700;
+    font-size:26px;
+    padding:8px 22px;
+    border-radius:50px;
+  }
+  .det-tag.price { background:var(--gold-light); color:var(--red-dark); border:2px solid var(--gold); }
+
+  /* ============ SLIDE 9: 持ち物・対象 ============ */
+  .slide9 {
+    background:#fff;
+    display:flex;
+    flex-direction:column;
+  }
+  .s9-photo {
+    height:480px;
+    background:url('images/ennichi-sisters.jpg') center 35% / cover no-repeat;
+  }
+  .s9-body {
+    padding:60px 80px;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+  }
+  .s9-title {
+    font-size:60px;
+    font-weight:900;
+    margin-bottom:36px;
+    color:var(--text-dark);
+  }
+  .s9-block {
+    display:flex;
+    gap:30px;
+    align-items:flex-start;
+    margin-bottom:36px;
+  }
+  .s9-icon {
+    font-size:60px;
+    flex-shrink:0;
+  }
+  .s9-text h3 {
+    font-size:38px;
+    font-weight:700;
+    margin-bottom:10px;
+    color:var(--text-dark);
+  }
+  .s9-text p {
+    font-size:32px;
+    color:var(--text-body);
+    line-height:1.8;
+  }
+
+  /* ============ SLIDE 10: CTA ============ */
+  .slide10 {
+    background:linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:90px 80px;
+    overflow:hidden;
+  }
+  .slide10 .deco-corner { color:#fff; }
+  .cta-tag {
+    display:inline-block;
+    background:var(--gold);
+    color:var(--navy-dark);
+    font-weight:900;
+    font-size:30px;
+    letter-spacing:0.2em;
+    padding:12px 40px;
+    border-radius:50px;
+    margin-bottom:40px;
+  }
+  .cta-title {
+    font-size:78px;
+    font-weight:900;
+    color:#fff;
+    line-height:1.5;
+    margin-bottom:40px;
+  }
+  .cta-box {
+    background:rgba(255,255,255,0.1);
+    border:2px solid rgba(255,255,255,0.3);
+    border-radius:28px;
+    padding:44px 50px;
+    color:#fff;
+    font-size:36px;
+    font-weight:700;
+    line-height:1.9;
+    margin-bottom:48px;
+  }
+  .cta-button {
+    background:linear-gradient(135deg, var(--red), var(--red-dark));
+    color:#fff;
+    font-size:42px;
+    font-weight:900;
+    padding:30px 80px;
+    border-radius:60px;
+    box-shadow:0 8px 30px rgba(196,69,57,0.5);
+    letter-spacing:0.1em;
+  }
+  .cta-note {
+    margin-top:30px;
+    color:rgba(255,255,255,0.7);
+    font-size:26px;
+  }
+</style>
+</head>
+<body>
+
+<p class="page-note">
+  各スライドは1080×1080px。ブラウザでこのページを開き、各スライドをスクリーンショットしてInstagram投稿に使用してください（全10枚）。
+</p>
+
+<div class="deck">
+
+  <!-- ============ 1. 表紙 ============ -->
+  <div class="slide slide1">
+    <span class="slide-num">1 / 10</span>
+    <div class="slide1-content">
+      <div class="slide1-badge">🏮 7月6日（月）開催</div>
+      <div class="slide1-title">親子で楽しむ<br>赤ちゃん縁日</div>
+      <div class="slide1-sub">うちわ作り・スイカ割り・バナナ釣り・ベビーマッサージ</div>
+    </div>
+  </div>
+
+  <!-- ============ 2. 概要 ============ -->
+  <div class="slide slide2">
+    <span class="slide-num dark">2 / 10</span>
+    <span class="ov-label">EVENT INFO</span>
+    <div class="ov-title">
+      <span class="accent">夏祭り気分</span>を<br>親子で楽しもう🍉
+    </div>
+    <div class="ov-body">
+      「赤ちゃんと一緒にお祭りに行くのはまだ難しい…」<br>
+      そんなママ・パパに向けた、小さなお子さんと<br>
+      楽しめる縁日イベントを開催します🏮<br>
+      うちわ作りやスイカ割り、バナナ釣りなど<br>
+      縁日の屋台気分をそのままに、夏の<br>
+      ふれあいベビーマッサージもお届けします。
+    </div>
+    <div class="ov-table">
+      <div class="ov-row">
+        <div class="ov-icon">📅</div>
+        <div class="ov-text">2026年7月6日（月）<small>10:30〜12:00</small></div>
+      </div>
+      <div class="ov-row">
+        <div class="ov-icon">📍</div>
+        <div class="ov-text">かわの町リビング<small>兵庫県加古川市</small></div>
+      </div>
+      <div class="ov-row">
+        <div class="ov-icon">💰</div>
+        <div class="ov-text">3,500円（税込）<small>参加費</small></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 3. うちわ制作 ============ -->
+  <div class="slide slide3">
+    <span class="slide-num">3 / 10</span>
+    <div class="prog">
+      <div class="prog-header">
+        <span class="prog-tag">PROGRAM 1</span>
+        <div class="prog-num">うちわ制作</div>
+        <div class="prog-title">世界に一つだけの<br>オリジナルうちわ🎐</div>
+        <div class="prog-body">
+          親子で絵を描いたりシールを貼ったりして、<br>
+          自分だけのうちわを作りましょう。<br>
+          できあがったうちわは、夏のお出かけにも<br>
+          大活躍してくれます。
+        </div>
+      </div>
+      <div class="prog-photo-area"><div class="prog-emoji-big">🎐</div></div>
+    </div>
+  </div>
+
+  <!-- ============ 4. 夏の触れ合いベビーマッサージ ============ -->
+  <div class="slide slide4">
+    <span class="slide-num">4 / 10</span>
+    <div class="prog">
+      <div class="prog-header">
+        <span class="prog-tag">PROGRAM 2</span>
+        <div class="prog-num">夏の触れ合いベビーマッサージ</div>
+        <div class="prog-title">ひんやり気持ちいい<br>ふれあいタイム🤲</div>
+        <div class="prog-body">
+          暑い夏にぴったりの、ひんやり気持ちいい<br>
+          ベビーマッサージ。<br>
+          スキンシップを通して、親子の絆を<br>
+          深める時間を過ごしましょう。
+        </div>
+      </div>
+      <div class="prog-photo-area"><div class="prog-emoji-big">🤲</div></div>
+    </div>
+  </div>
+
+  <!-- ============ 5. スイカ割りレース ============ -->
+  <div class="slide slide5">
+    <span class="slide-num">5 / 10</span>
+    <div class="prog">
+      <div class="prog-header">
+        <span class="prog-tag">PROGRAM 3</span>
+        <div class="prog-num">スイカ割りレース</div>
+        <div class="prog-title">縁日の人気者に<br>親子で挑戦🍉</div>
+        <div class="prog-body">
+          縁日の人気企画、スイカ割りレース！<br>
+          親子で力を合わせてチャレンジしましょう。<br>
+          盛り上がること間違いなしの<br>
+          人気プログラムです。
+        </div>
+      </div>
+      <div class="prog-photo-area"><div class="prog-emoji-big">🍉</div></div>
+    </div>
+  </div>
+
+  <!-- ============ 6. バナナ釣り ============ -->
+  <div class="slide slide6">
+    <span class="slide-num">6 / 10</span>
+    <div class="prog">
+      <div class="prog-header">
+        <span class="prog-tag">PROGRAM 4</span>
+        <div class="prog-num">バナナ釣り</div>
+        <div class="prog-title">屋台気分で<br>釣ってゲット🍌</div>
+        <div class="prog-body">
+          縁日の屋台気分で、バナナ釣りを<br>
+          楽しもう！<br>
+          上手に釣り上げて、素敵な景品を<br>
+          ゲットしてくださいね。
+        </div>
+      </div>
+      <div class="prog-photo-area"><div class="prog-emoji-big">🍌</div></div>
+    </div>
+  </div>
+
+  <!-- ============ 7. 当日の流れ ============ -->
+  <div class="slide slide7">
+    <span class="slide-num dark">7 / 10</span>
+    <div class="sch-title">📋 当日の流れ</div>
+    <div class="sch-step">
+      <div class="sch-num">1</div>
+      <div class="sch-text"><h3>10:30　集合・受付</h3><p>かわの町リビングに集合。はじめましての方も歓迎です。</p></div>
+    </div>
+    <div class="sch-step">
+      <div class="sch-num">2</div>
+      <div class="sch-text"><h3>10:35　うちわ制作</h3><p>親子でオリジナルうちわを作ります。</p></div>
+    </div>
+    <div class="sch-step">
+      <div class="sch-num">3</div>
+      <div class="sch-text"><h3>11:00　夏の触れ合いベビーマッサージ</h3><p>ひんやり気持ちいいマッサージで親子のふれあいタイム。</p></div>
+    </div>
+    <div class="sch-step">
+      <div class="sch-num">4</div>
+      <div class="sch-text"><h3>11:30　スイカ割りレース／バナナ釣り</h3><p>縁日の屋台気分で、親子一緒にゲームを楽しみます。</p></div>
+    </div>
+    <div class="sch-step">
+      <div class="sch-num">5</div>
+      <div class="sch-text"><h3>12:00　解散</h3><p>気をつけてお帰りください。</p></div>
+    </div>
+  </div>
+
+  <!-- ============ 8. 開催詳細 ============ -->
+  <div class="slide slide8">
+    <span class="slide-num dark">8 / 10</span>
+    <div class="det-title">📝 開催詳細</div>
+    <div class="det-table">
+      <div class="det-row">
+        <div class="det-label">📅 日時</div>
+        <div class="det-value">2026年7月6日（月）<br>10:30〜12:00</div>
+      </div>
+      <div class="det-row">
+        <div class="det-label">📍 場所</div>
+        <div class="det-value">かわの町リビング<br>（兵庫県加古川市）</div>
+      </div>
+      <div class="det-row">
+        <div class="det-label">💰 参加費</div>
+        <div class="det-value"><span class="det-tag price">3,500円（税込）</span></div>
+      </div>
+      <div class="det-row">
+        <div class="det-label">🎐 内容</div>
+        <div class="det-value">
+          <div class="det-tags">
+            <span class="det-tag">うちわ制作</span>
+            <span class="det-tag">ベビーマッサージ</span>
+            <span class="det-tag">スイカ割りレース</span>
+            <span class="det-tag">バナナ釣り</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 9. 持ち物・対象 ============ -->
+  <div class="slide slide9">
+    <span class="slide-num">9 / 10</span>
+    <div class="s9-photo"></div>
+    <div class="s9-body">
+      <div class="s9-title">🎒 ご参加にあたって</div>
+      <div class="s9-block">
+        <div class="s9-icon">👶</div>
+        <div class="s9-text">
+          <h3>対象</h3>
+          <p>赤ちゃん・お子さまと保護者の方<br>（月齢制限なし）</p>
+        </div>
+      </div>
+      <div class="s9-block">
+        <div class="s9-icon">🎒</div>
+        <div class="s9-text">
+          <h3>持ち物</h3>
+          <p>バスタオル、飲み物、おむつなど<br>いつものおでかけセット</p>
+        </div>
+      </div>
+      <div class="s9-block">
+        <div class="s9-icon">👕</div>
+        <div class="s9-text">
+          <h3>服装</h3>
+          <p>動きやすい服装でお越しください。<br>甚平・浴衣での参加も大歓迎です🏮</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 10. CTA ============ -->
+  <div class="slide slide10">
+    <span class="slide-num">10 / 10</span>
+    <div class="deco-corner" style="top:60px; left:60px;">🏮</div>
+    <div class="deco-corner" style="bottom:60px; right:60px;">🍉</div>
+    <span class="cta-tag">ENTRY</span>
+    <div class="cta-title">赤ちゃん縁日<br>ご予約受付中です</div>
+    <div class="cta-box">
+      📅 2026年7月6日（月）10:30〜12:00<br>
+      📍 かわの町リビング（加古川市）<br>
+      💰 参加費 3,500円（税込）
+    </div>
+    <div class="cta-button">プロフィールのリンクから申込</div>
+    <p class="cta-note">※ お申し込みは専用フォームから受け付けています</p>
+  </div>
+
+</div>
+
+</body>
+</html>

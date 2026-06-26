@@ -3,3 +3,10 @@ images/*.HEIC
 images/*.heic
 images/*.MOV
 images/iqwrlKWwCtVTtVCOwMevVU_kLNmekuva6HPwaJzwu8o.MP4
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
